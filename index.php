@@ -9,6 +9,30 @@
 		return $contatos;
 	}
 	
+	// Função que adiciona contato ao json
+	function addContato($nome,$email){
+
+		// Carregando os contatos
+		$contatos = getContatos();
+
+		// Adicionando um novo contato ao array de contatos
+		$contatos[] = [
+			'nome' => $nome,
+			'email' => $email
+		];
+		
+		// Transformando o array contatos numa string json
+		$json = json_encode($contatos);
+
+		// Salvar a string json no arquivo
+		file_put_contents(ARQUIVO,$json); 
+	}
+
+	if($_POST){
+		// Adicionar contato ao arquivo json
+		addContato($_POST['nome'],$_POST['email']);
+	}
+
 	$contatos = getContatos();
 ?>
 <!DOCTYPE html>
@@ -30,8 +54,8 @@
 		<?php endforeach; ?>
 	</ul>
 	<form action="index.php" method="post">
-		<input type="text" name="nome" id="nome" placeholder="Digite o nome">
-		<input type="email" name="email" id="email" placeholder="Digite o e-mail">
+		<input required type="text" name="nome" id="nome" placeholder="Digite o nome">
+		<input required type="email" name="email" id="email" placeholder="Digite o e-mail">
 		<button type="submit">Salvar</button>
 	</form>
 </body>
