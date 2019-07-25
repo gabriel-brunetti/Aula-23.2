@@ -42,10 +42,10 @@
 		file_put_contents(ARQUIVO,$json); 
 	}
 	
-	// Verificando o post
-	$erros = errosNoPost();
-
 	if($_POST){
+		
+		// Verificando o post
+		$erros = errosNoPost();
 
 		if(count($erros) == 0){
 
@@ -53,10 +53,22 @@
 			addFuncionario($_POST['nome'],$_POST['email']);
 		
 		}
+
 	} else {
+
+		// Garantindo que um vetor de erros exista
+		// ainda que vazio quando não houver POST
 		$erros = [];
+
 	}
 
+	// errNome será true se o campo nome for inválido e false se o campo estiver ok. 
+	$errNome = in_array('errNome',$erros);
+
+	// errEmail será true se o campo email for inválido e false se o campo estiver ok. 
+	$errEmail = in_array('errEmail',$erros);
+
+	// Carregando vetor de funcionários
 	$funcionarios = getFuncionarios();
 ?>
 <!DOCTYPE html>
@@ -83,12 +95,14 @@
 				
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do funcionário">
+					<input type="text" class="form-control <?= ($errNome?'is-invalid':'')?>" id="nome" name="nome" placeholder="Digite o nome do funcionário">
+					<?php if($errNome): ?><div class="invalid-feedback">Preencha o nome corretamente.</div><?php endif; ?>
 				</div>
 				
 				<div class="form-group">
 					<label for="email">E-mail</label>
-					<input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail do funcionário">
+					<input type="email" class="form-control <?= ($errEmail?'is-invalid':'')?>"" id="email" name="email" placeholder="Digite o e-mail do funcionário">
+					<?php if($errEmail): ?><div class="invalid-feedback">Preencha o e-mail corretamente.</div><?php endif; ?>
 				</div>
 				
 				<button class="btn btn-primary" type="submit">Salvar</button>
