@@ -51,3 +51,34 @@
 		// Salvar a string json no arquivo
 		file_put_contents(ARQUIVO,$json); 
 	}
+
+	// Função que faz o login do usuário
+	function login($email,$senha){
+
+		// Carregando vetor de funcionários
+		$funcionarios = getFuncionarios();
+
+		// Buscando o funcionário com o email passado
+		$achou = false;
+		foreach ($funcionarios as $f) {
+			if($f['email'] == $email){
+				$achou = true;
+				break;
+			}
+		}
+
+
+		if($achou){
+			// Validando a senha
+			if(password_verify($senha,$f['senha'])){
+				$loginOk = true;
+			} else {
+				$loginOk = false;
+			}
+		} else {
+			$loginOk = false;
+		}
+
+		return $loginOk;
+
+	}

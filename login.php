@@ -1,6 +1,17 @@
 <?php 
 	// Incluindo funções
 	include('./inc/functions.php');
+
+	if($_POST){
+
+		$loginOk = login($_POST['email'],$_POST['senha']);
+
+		if($loginOk){
+			die('Login OK!');
+		} else {
+			die('LOGIN FALHOU MISERAVELMENTE!');
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +34,7 @@
 			</div>
 			<div class="form-group">
 				<label for="senha">Senha</label>
-				<input type="senha" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+				<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
 			</div>
 			<button class="btn btn-primary" type="submit">Entrar</button>
 		</form>
