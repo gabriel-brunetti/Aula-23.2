@@ -1,3 +1,8 @@
+<?php 
+	// Incluindo funções
+	include('./inc/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
