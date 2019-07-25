@@ -4,6 +4,16 @@
 	include('./inc/functions.php');
 
 	if($_POST){
+
+		echo('<pre>');
+		print_r($_POST);
+		echo('</pre>');
+
+		echo('<pre>');
+		print_r($_FILES);
+		echo('</pre>');
+
+		die();
 		
 		// Verificando o post
 		$erros = errosNoPost();
@@ -54,7 +64,7 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
-			<form class="col-sm-12 col-md-8" action="index.php" method="post">
+			<form class="col-sm-12 col-md-8" action="cadastro.php" method="post" enctype="multipart/form-data">
 				
 				<div class="form-group">
 					<label for="nome">Nome</label>
@@ -86,8 +96,6 @@
 					<input type="password" class="form-control <?= ($errConf?'is-invalid':'')?>"" id="conf" name="conf" placeholder="Confirma a senha">
 					<?php if($errConf): ?><div class="invalid-feedback">Senha e confirmação não conferem.</div><?php endif; ?>
 				</div>
-
-				
 
 				<button class="btn btn-primary" type="submit">Salvar</button>
 				
