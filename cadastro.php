@@ -54,9 +54,17 @@
 	<div class="container">
 		<div class="row">
 			<ul class="col-sm-12 col-md-4 list-group">
-				<?php foreach($funcionarios as $c): ?>
+				<?php foreach($funcionarios as $c):
+
+					if(isset($c['foto']) && file_exists(PASTA_FOTOS.$c['foto'])){
+						$foto = PASTA_FOTOS.$c['foto'];
+					} else {
+						$foto = PASTA_FOTOS.'foto_padrao.png';
+					}
+				
+				?>
 				<li class="list-group-item">
-					<img class="foto-funcionario" src="<?= PASTA_FOTOS.$c['foto']?>" alt="<?= $c['nome'];  ?>">
+					<img class="foto-funcionario" src="<?= $foto ?>" alt="<?= $c['nome'];  ?>">
 					<span><?= $c['nome'];  ?></span> : 
 					<span><?= $c['email'];  ?></span>
 				</li>
