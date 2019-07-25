@@ -41,7 +41,7 @@
 		$funcionarios[] = [
 			'nome' => $nome,
 			'email' => $email,
-			'senha' => $senha
+			'senha' => password_hash($senha, PASSWORD_DEFAULT)
 		];
 		
 		// Transformando o array funcionarios numa string json
