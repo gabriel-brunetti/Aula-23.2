@@ -13,6 +13,14 @@
 			$erros[] = 'errEmail';
 		}
 
+		if(!isset($_POST['senha']) || $_POST['senha']==''){
+			$erros[] = 'errSenha';
+		}
+
+		if($_POST['conf'] != $_POST['senha']){
+			$erros[] = 'errConf';
+		}
+
 		return $erros;
 	}
 
@@ -62,11 +70,13 @@
 
 	}
 
-	// errNome será true se o campo nome for inválido e false se o campo estiver ok. 
+	// $errNome, $errEmail, $errSenha, $errConf serão true se o respectivo
+	// campo nome for inválido e false se o campo estiver ok. 
 	$errNome = in_array('errNome',$erros);
-
-	// errEmail será true se o campo email for inválido e false se o campo estiver ok. 
 	$errEmail = in_array('errEmail',$erros);
+	$errSenha = in_array('errSenha',$erros);
+	$errConf = in_array('errConf',$erros);
+
 
 	// Carregando vetor de funcionários
 	$funcionarios = getFuncionarios();
@@ -107,12 +117,14 @@
 
 				<div class="form-group">
 					<label for="senha">Senha</label>
-					<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite uma senha">
+					<input type="password" class="form-control <?= ($errSenha?'is-invalid':'')?>" id="senha" name="senha" placeholder="Digite uma senha">
+					<?php if($errSenha): ?><div class="invalid-feedback">Preencha a senha corretamente.</div><?php endif; ?>
 				</div>
 
 				<div class="form-group">
 					<label for="conf">Confirmação de senha</label>
-					<input type="password" class="form-control" id="conf" name="conf" placeholder="Confirma a senha">
+					<input type="password" class="form-control <?= ($errConf?'is-invalid':'')?>"" id="conf" name="conf" placeholder="Confirma a senha">
+					<?php if($errConf): ?><div class="invalid-feedback">Senha e confirmação não conferem.</div><?php endif; ?>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Salvar</button>
