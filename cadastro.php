@@ -51,6 +51,10 @@
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+	<header>
+		<div class="container">Cadastramento de Funcionários</div>
+	</header>
+
 	<div class="container">
 		<div class="row">
 			<ul class="col-sm-12 col-md-4 list-group">
@@ -59,7 +63,7 @@
 					if(isset($c['foto']) && file_exists(PASTA_FOTOS.$c['foto'])){
 						$foto = PASTA_FOTOS.$c['foto'];
 					} else {
-						$foto = PASTA_FOTOS.'foto_padrao.png';
+						$foto = PASTA_FOTOS.'foto_padrao.jpg';
 					}
 				
 				?>
