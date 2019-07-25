@@ -4,24 +4,20 @@
 	include('./inc/functions.php');
 
 	if($_POST){
-
-		echo('<pre>');
-		print_r($_POST);
-		echo('</pre>');
-
-		echo('<pre>');
-		print_r($_FILES);
-		echo('</pre>');
-
-		die();
 		
 		// Verificando o post
 		$erros = errosNoPost();
 
-		if(count($erros) == 0){
+		// Verificando se o upload aconteceu com sucesso
+		$uploadOk = ($_FILES['foto']['error'] == UPLOAD_ERR_OK);
+
+		if(count($erros) == 0 && $uploadOk){
+
+			// Salvando foto de funcionário
+			salvaFoto($_FILES['foto']['tmp_name'],$_FILES['foto']['name']);
 
 			// Adicionar funcionario ao arquivo json
-			addFuncionario($_POST['nome'],$_POST['email'],$_POST['senha']);
+			addFuncionario($_POST['nome'],$_POST['email'],$_POST['senha'],$_FILES['foto']['name']);
 		
 		}
 

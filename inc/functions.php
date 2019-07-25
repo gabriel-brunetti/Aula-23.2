@@ -2,6 +2,9 @@
 
 	// Definindo uma constante para o nome do arquivo
 	define('ARQUIVO','funcionarios.json');
+	
+	// Definindo constante para guardar caminho das fotos
+	define('PASTA_FOTOS','fotos/');
 
 	// Função para validar dados do post
 	function errosNoPost(){
@@ -33,7 +36,7 @@
 	}
 	
 	// Função que adiciona funcionario ao json
-	function addFuncionario($nome,$email,$senha){
+	function addFuncionario($nome,$email,$senha,$foto){
 
 		// Carregando os funcionarios
 		$funcionarios = getFuncionarios();
@@ -42,7 +45,8 @@
 		$funcionarios[] = [
 			'nome' => $nome,
 			'email' => $email,
-			'senha' => password_hash($senha, PASSWORD_DEFAULT)
+			'senha' => password_hash($senha, PASSWORD_DEFAULT),
+			'foto' => $foto
 		];
 		
 		// Transformando o array funcionarios numa string json
@@ -81,4 +85,9 @@
 
 		return $loginOk;
 
+	}
+
+	// Função que salva a foto do usuário
+	function salvaFoto($tmpNome,$nome){
+		move_uploaded_file($tmpNome,PASTA_FOTOS.$nome);
 	}
