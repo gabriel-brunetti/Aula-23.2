@@ -2,15 +2,22 @@
 	// Incluindo funções
 	include('./inc/functions.php');
 
+	// Ferificando se o post está vindo
 	if($_POST){
 
+		// Guardando o resultado do login (true/false)
 		$loginOk = login($_POST['email'],$_POST['senha']);
 
+		// Redirecionando se login estiver OK
 		if($loginOk){
-			die('Login OK!');
-		} else {
-			die('LOGIN FALHOU MISERAVELMENTE!');
+			header('location: index.php');
 		}
+
+	} else {
+
+		// Garantindo que $loginOk esteja definida com valor padrão igual a true
+		$loginOk = true;
+
 	}
 ?>
 
@@ -30,11 +37,12 @@
 		<form class="col-sm-12 col-md-6 offset-3"  action="login.php" method="post">
 			<div class="form-group">
 				<label for="email">E-mail</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu e-mail">
+				<input type="email" class="form-control <?= (!$loginOk?'is-invalid':'')?>" id="email" name="email" placeholder="Digite o seu e-mail">
 			</div>
 			<div class="form-group">
 				<label for="senha">Senha</label>
-				<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+				<input type="password" class="form-control <?= (!$loginOk?'is-invalid':'')?>" id="senha" name="senha" placeholder="Digite sua senha">
+				<?php if(!$loginOk): ?><div class="invalid-feedback">Informações de login inválidas</div><?php endif; ?>
 			</div>
 			<button class="btn btn-primary" type="submit">Entrar</button>
 		</form>
