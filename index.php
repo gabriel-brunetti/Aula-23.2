@@ -104,7 +104,17 @@
 					<input type="email" class="form-control <?= ($errEmail?'is-invalid':'')?>"" id="email" name="email" placeholder="Digite o e-mail do funcionário">
 					<?php if($errEmail): ?><div class="invalid-feedback">Preencha o e-mail corretamente.</div><?php endif; ?>
 				</div>
-				
+
+				<div class="form-group">
+					<label for="senha">Senha</label>
+					<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite uma senha">
+				</div>
+
+				<div class="form-group">
+					<label for="conf">Confirmação de senha</label>
+					<input type="password" class="form-control" id="conf" name="conf" placeholder="Confirma a senha">
+				</div>
+
 				<button class="btn btn-primary" type="submit">Salvar</button>
 				
 			</form>
