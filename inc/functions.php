@@ -51,3 +51,27 @@
 		// Salvar a string json no arquivo
 		file_put_contents(ARQUIVO,$json); 
 	}
+
+	// Função para verificar se o login é válido
+	function logar($email,$senha){
+		
+		// Carregar o Json
+		$funcionarios = getFuncionarios();
+
+		// Procurar o funcionário com o e-mail dado
+		$achou = false;
+		foreach ($funcionarios as $f) {
+			if($f['email'] == $email){
+				$achou = true;
+				break;
+				// o break interrompe o forearch/LOOP; não interrompe o script
+			}
+		}
+
+		if(!$achou){
+			return false;
+		} else {
+			$senhaOk = password_verify($senha,$f['senha']);
+			return $senhaOk;
+		}
+	}

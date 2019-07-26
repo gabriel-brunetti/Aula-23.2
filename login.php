@@ -2,7 +2,18 @@
 
     // Incluindo arquivo de funções
     include('./inc/functions.php');
+    
+    if($_POST){
+        $loginOk = logar($_POST['email'],$_POST['senha']);
+        if($loginOk){
 
+            // Redirecionando para index.php
+            header('location: index.php');
+
+        }
+    } else {
+        $loginOk = true;
+    }
 ?>
 
 <!DOCTYPE html>
