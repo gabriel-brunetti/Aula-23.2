@@ -91,3 +91,27 @@
 	function salvaFoto($tmpNome,$nome){
 		move_uploaded_file($tmpNome,PASTA_FOTOS.$nome);
 	}
+
+	// Função que carrega dados do funcionário a partir do e-mail
+	function getFuncionario($email){
+
+		// Carregando vetor de funcionários
+		$funcionarios = getFuncionarios();
+
+		// Buscando o funcionário com o email passado
+		foreach ($funcionarios as $f) {
+
+			if($f['email'] == $email){
+
+				// Removendo o campo de senha do funcionário
+				unset($f['senha']);
+
+				// retornando o funcionário e finalizando a função
+				return $f;
+			}
+
+		}
+
+		return false;
+
+	}

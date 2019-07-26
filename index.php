@@ -1,12 +1,21 @@
 <?php
+
+	// Incluindo funções
+	include('./inc/functions.php');
+
 	// Iniciando session
 	session_start();
-	
-	// Bloqueando acesso se usuário não estiver logado
+
+	// Bloqueando acesso de visitante que não estiver logado
 	if(!$_SESSION['logado']){
 		header('location: login.php');
 		die();
 	}
+
+	// Carregando dados do funcionário
+	$f = getFuncionario($_SESSION['email']) 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +26,6 @@
 	<title>Document</title>
 </head>
 <body>
-	ALOOO VOCÊ!!!
+	ALOOO VOCÊ, <?= $f['nome'] ?>!!!
 </body>
 </html>

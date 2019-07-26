@@ -12,6 +12,7 @@
 		if($loginOk){
 			session_start();
 			$_SESSION['logado'] = true;
+			$_SESSION['email'] = $_POST['email'];
 			header('location: index.php');
 		}
 
