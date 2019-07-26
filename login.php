@@ -10,6 +10,12 @@
             // Redirecionando para index.php
             header('location: index.php');
 
+        } if($loginOk == false){
+            ?>
+            <div class="alert alert-primary" role="alert">
+            Erro Login!
+            </div>
+            <?php
         }
     } else {
         $loginOk = true;
