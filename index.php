@@ -1,3 +1,13 @@
+<?php
+	// Iniciando session
+	session_start();
+	
+	// Bloqueando acesso se usuário não estiver logado
+	if(!$_SESSION['logado']){
+		header('location: login.php');
+		die();
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

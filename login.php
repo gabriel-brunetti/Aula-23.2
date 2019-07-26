@@ -10,6 +10,8 @@
 
 		// Redirecionando se login estiver OK
 		if($loginOk){
+			session_start();
+			$_SESSION['logado'] = true;
 			header('location: index.php');
 		}
 
