@@ -26,6 +26,7 @@
 	<title>Document</title>
 </head>
 <body>
+	<?php exibeFoto($f); ?>
 	ALOOO VOCÊ, <?= $f['nome'] ?>!!!
 </body>
 </html>

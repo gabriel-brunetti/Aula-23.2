@@ -115,3 +115,21 @@
 		return false;
 
 	}
+
+	// Função que imprime a foto do funcionário ou foto padrão.
+	function exibeFoto($funcionario,$class=''){
+
+		// Verificando se foto existe ou se vai por a foto padrao
+		if(isset($funcionario['foto']) && file_exists(PASTA_FOTOS.$funcionario['foto'])){
+			$foto = PASTA_FOTOS.$funcionario['foto'];
+		} else {
+			$foto = PASTA_FOTOS.'foto_padrao.jpg';
+		}
+
+		// Atribuindo ou nao uma classe
+		if($class == ''){
+			echo("<img src='$foto' alt='$funcionario[nome]'>");
+		} else {
+			echo("<img class='$class' src='$foto' alt='$funcionario[nome]'>");
+		}
+	}
