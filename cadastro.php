@@ -68,7 +68,7 @@
 				
 				?>
 				<li class="list-group-item">
-					<img class="foto-funcionario" src="<?= $foto ?>" alt="<?= $c['nome'];  ?>">
+					<?php exibeFoto($c,'foto-funcionario') ?>
 					<span><?= $c['nome'];  ?></span> : 
 					<span><?= $c['email'];  ?></span>
 				</li>
