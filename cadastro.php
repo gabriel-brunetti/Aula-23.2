@@ -8,10 +8,23 @@
 		// Verificando o post
 		$erros = errosNoPost();
 
+		// Verificando se arquivo chegou
+		if($_FILES['foto']){
+			if($_FILES['foto']['error'] == 0){
+				// Salvar a foto de forma decente
+				move_uploaded_file($_FILES['foto']['tmp_name'],'./fotos/'.$_FILES['foto']['name']);
+
+				// Salvando o nome do arquivo definitivo
+				$arquivo_def = './fotos/'.$_FILES['foto']['name'];
+			} else {
+				$erros[] = 'errUpload';
+			}
+		}
+
 		if(count($erros) == 0){
 
 			// Adicionar funcionario ao arquivo json
-			addFuncionario($_POST['nome'],$_POST['email'],$_POST['senha']);
+			addFuncionario($_POST['nome'],$_POST['email'],$_POST['senha'], $arquivo_def);
 		
 		}
 
@@ -24,19 +37,19 @@
 	}
 
 	// errNome será true se o campo nome for inválido e false se o campo estiver ok. 
-	$errNome = in_array('errNome',$erros);
+		$errNome = in_array('errNome',$erros);
 
 	// errEmail será true se o campo email for inválido e false se o campo estiver ok. 
-	$errEmail = in_array('errEmail',$erros);
+		$errEmail = in_array('errEmail',$erros);
 
 	// errSenha será ture se o campo senha for inválido e false se o campo estiver ok.
-	$errSenha = in_array('errSenha',$erros);
+		$errSenha = in_array('errSenha',$erros);
 
 	// errConf será true se o campo de confirmação for inválido e false se o campo estiver ok.
-	$errConf = in_array('errConf',$erros);
+		$errConf = in_array('errConf',$erros);
 
 	// Carregando vetor de funcionários
-	$funcionarios = getFuncionarios();
+		$funcionarios = getFuncionarios();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -51,6 +64,7 @@
 	<div class="container">
 		<div class="row">
 			<ul class="col-sm-12 col-md-4 list-group">
+				<!-- LISTA DOS FUNCIONÁRIOS CADASTRADOS -->
 				<?php foreach($funcionarios as $c): ?>
 				<li class="list-group-item">
 					<span><?= $c['nome'];  ?></span> : 
@@ -58,7 +72,7 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
-			<form class="col-sm-12 col-md-8" action="cadastro.php" method="post">
+			<form class="col-sm-12 col-md-8" action="cadastro.php" method="post" enctype="multipart/form-data">
 				
 				<div class="form-group">
 					<label for="nome">Nome</label>
