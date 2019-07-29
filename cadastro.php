@@ -65,6 +65,14 @@
 					<input value="" type="text" class="form-control <?= ($errNome?'is-invalid':'')?>" id="nome" name="nome" placeholder="Digite o nome do funcionário">
 					<?php if($errNome): ?><div class="invalid-feedback">Preencha o nome corretamente.</div><?php endif; ?>
 				</div>
+
+				<div class="form-group">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="foto" name="foto">
+						<label class="custom-file-label" for="foto">Escolha uma foto bonita</label>
+						<!-- css tradução campo bootstrap (para mudar o browse) -->
+					</div>
+				</div>
 				
 				<div class="form-group">
 					<label for="email">E-mail</label>
