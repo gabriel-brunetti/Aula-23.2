@@ -67,12 +67,14 @@
 				<!-- LISTA DOS FUNCIONÁRIOS CADASTRADOS -->
 				<?php foreach($funcionarios as $c): ?>
 				<li class="list-group-item">
+					<img src="<?= $c['foto'];?>" alt="<?= $c['nome']; ?>" style="width:32px;border-radius:16px">
 					<span><?= $c['nome'];  ?></span> : 
 					<span><?= $c['email'];  ?></span>
 				</li>
 				<?php endforeach; ?>
 			</ul>
 			<form class="col-sm-12 col-md-8" action="cadastro.php" method="post" enctype="multipart/form-data">
+			<!-- multipart/form-data formulário com várias partes (Separar o que é texto normal do que é/são arquivos) -->
 				
 				<div class="form-group">
 					<label for="nome">Nome</label>
